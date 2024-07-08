@@ -14,7 +14,6 @@ export const ImgProvider = ({ children }) => {
     const likeFuntion = (e) => {
         e.preventDefault()
         const idFoto = e.target.id
-        console.log(idFoto)
         for (const key in imagen) {
             if (imagen[key].id == idFoto) {
                 imagen[key].liked = true
@@ -24,13 +23,11 @@ export const ImgProvider = ({ children }) => {
         setImagen([...imagen])
         const capturaLike = () => {
             setImagenLike(imagen)
-            console.log(imagenLike)
         }
         capturaLike()
         const toFilter = true
         const filterLike = imagenLike.filter((likes) => likes.liked == toFilter)
         setFilter(filterLike)
-        console.log(filter)
     }
     const variableGlobalImagen = {
         imagen,
