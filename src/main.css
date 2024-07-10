@@ -64,3 +64,15 @@ a {
 .p-3 {
   padding: 30px;
 }
+.zindexheart{
+  z-index: 50;
+  position: absolute;
+  left: 80%;
+}
+.zindexText{
+  z-index: 50;
+  position: absolute;
+  color: white;
+  top: 70%;
+  font-size: 1em;
+}
