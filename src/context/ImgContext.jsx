@@ -6,39 +6,31 @@ export const ImgContext = createContext()
 
 export const ImgProvider = ({ children }) => {
     const [imagen, setImagen] = useState([])
-    const [imagenLike, setImagenLike] = useState([])
     const [filter, setFilter] = useState([])
-    const likePhoto = '../src/assets/icons/heart-filled.svg'
-    const notLikePhoto = '../src/assets/icons/heart.svg'
-    
+    const [heart, setHeart] = useState([])
+   
     const likeFuntion = (e) => {
         e.preventDefault()
+        
         const idFoto = e.target.id
         for (const key in imagen) {
             if (imagen[key].id == idFoto) {
-                imagen[key].liked = true
+                imagen[key].liked = !imagen[key].liked
             }
         }
         
         setImagen([...imagen])
-        const capturaLike = () => {
-            setImagenLike(imagen)
-        }
-        capturaLike()
+     
         const toFilter = true
-        const filterLike = imagenLike.filter((likes) => likes.liked == toFilter)
+        const filterLike = imagen.filter((likes) => likes.liked == toFilter)
         setFilter(filterLike)
     }
     const variableGlobalImagen = {
         imagen,
         setImagen,
         likeFuntion,
-        likePhoto,
-        notLikePhoto,
-        setImagenLike,
-        imagenLike,
-        filter
-        
+        filter,
+        heart   
     }
   return (
     

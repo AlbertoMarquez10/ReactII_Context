@@ -1,12 +1,12 @@
 import { useContext, useEffect } from 'react'
 import { ImgContext } from '../context/ImgContext'
 import Card from 'react-bootstrap/Card'
-import Figure from 'react-bootstrap/Figure'
+import IconHeart from './IconHeart'
 
 const PHOTO_URL = '/photos.json'
 
 const Gallery = () => {
-  const {imagen, setImagen, likeFuntion, likePhoto, notLikePhoto } = useContext(ImgContext)
+  const {imagen, setImagen, likeFuntion} = useContext(ImgContext)
 
   const basePhotos = async () => {
     const consultaPhotos = await fetch(PHOTO_URL)
@@ -15,24 +15,19 @@ const Gallery = () => {
   }
   useEffect(() => {
     basePhotos()
+    
   }, [])
 
   return (
     <div className='gallery grid-columns-5 p-3'>
       {imagen.map((img) => (
         <Card style={{ width: '16rem' }} key={img.id} >
+          <IconHeart filled={img.liked}/>
           <Card.Img variant='top' src={img.src.tiny} id={img.id}
-          onClick={likeFuntion}/>
+          onClick={likeFuntion} />
           <Card.Text>{img.alt}</Card.Text>
-          <Card.Text>{img.liked}</Card.Text>
-          <Figure>
-            <Figure.Image
-              width={27}
-              height={28}
-              src={img.liked === true ? likePhoto : notLikePhoto}
-            />
-          </Figure>
         </Card>
+        
       ))}
 
     </div>
